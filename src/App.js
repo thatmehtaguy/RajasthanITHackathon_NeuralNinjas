@@ -5,6 +5,12 @@ import Home from "./pages/Home";
 import MarketPlace from "./pages/MarketplacesPages/MarketplaceEntry";
 import Analysis from "./pages/Analysis";
 import Loans from "./pages/Loans";
+import MainCategories from "./pages/MarketplacesPages/MainCategories"
+import SubCategories from "./pages/MarketplacesPages/SubCategories"
+import ProductCollection from "./pages/MarketplacesPages/ProductCollection";
+import Productpg from "./pages/MarketplacesPages/Productpg";
+import Checkout from "./pages/MarketplacesPages/Checkout";
+
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -27,9 +33,57 @@ function App() {
           element={
             <>
               <MarketPlace/>
+              </>
+       
+          }
+        />
+        <Route
+            path="/marketplace/maincategories"
+            element={
+              
+              <div style={{marginTop:"150px"}}>
+                <MainCategories/>
+                </div>
+              
+            }
+          />
+        <Route
+          path="/marketplace/subcategories"
+          element={
+            <>
+              <SubCategories/>
             </>
           }
         />
+
+        
+        <Route
+          path="/marketplace/collection"
+          element={
+            <>
+              <ProductCollection/>
+            </>
+          }
+        />
+        <Route
+          path="/marketplace/product"
+          element={
+            <>
+              <Productpg/>
+            </>
+          }
+        />
+        <Route
+            path="/marketplace/checkout"
+            element={
+              <>
+                <Checkout/>
+              </>
+            }
+          />
+        
+        
+        
         <Route
           path="/loans"
           element={
