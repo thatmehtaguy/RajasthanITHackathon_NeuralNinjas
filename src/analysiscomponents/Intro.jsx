@@ -12,7 +12,7 @@ const Intro = () => {
                 <div className="item header-text">
                   <h6>Welcome to VGrow Analytics</h6>
                   <h2>
-                    Providing <em>Smart</em> Farming <span>Solutions</span>?
+                    Providing <em>Smart</em> Farming <span>Solutions</span>
                   </h2>
                   <p>
                     We suggest Optimal crop and fertilizer selection based on
