@@ -40,7 +40,7 @@ function App() {
         />
         
           <Route
-            path="/analysis"
+            path="/analytics"
             element={
               <>
                 <Analysis/>
@@ -48,7 +48,7 @@ function App() {
             }
           />
           <Route
-            path="/analysis/report"
+            path="/analytics/report"
             element={
               <>
                 <iframe
