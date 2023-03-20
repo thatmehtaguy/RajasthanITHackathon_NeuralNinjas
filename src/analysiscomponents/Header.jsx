@@ -29,10 +29,10 @@ const Header = () => {
                       Marketplace</a>
                   </li>
                   <li className="scroll-to-section">
-                    <a href="#fert">Loans</a>
+                    <a href="#loans">Loans</a>
                   </li>
                   <li className="scroll-to-section">
-                    <a href="#fert">Analysis</a>
+                    <a href="#analysis">Analysis</a>
                   </li>
                   <li>
                     <div id="google_translate_element"></div>

@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./analysiscomponents/Header";
 import Footer from "./analysiscomponents/Footer";
 import Home from "./pages/Home";
-import MarketPlace from "./pages/MarketPlace";
+import MarketPlace from "./pages/MarketplacesPages/MarketplaceEntry";
 import Analysis from "./pages/Analysis";
 import Loans from "./pages/Loans";
 
