@@ -10,18 +10,20 @@ import warnings
 import joblib
 import keras
 import os
-import tensorflow as ts
+import tensorflow as tf
+import cv2
 warnings.filterwarnings('ignore')
 
+UPLOAD_FOLDER = os.getcwd()+'/static/submitted'
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 CORS(app)
-
-# crop_recommendation_model_path = './XGB_Crop.pkl'
-crop_recommendation_model_path = r'C:\Users\ARYAN\Desktop\rajasthanIT\Models\classifier.pkl'
+crop_recommendation_model_path = './XGB_Crop.pkl'
+crop_recommendation_model_path = r'C:\RajasthanHAck backend\RajasthanITHackathon_NeuralNinjas\classifier.pkl'
 crop_recommendation_model = pickle.load(
     open(crop_recommendation_model_path, 'rb'))
 
-fertilizer_recommendation_model_path = r'C:\Users\ARYAN\Desktop\rajasthanIT\Models\classifierfertilizer.pkl'
+fertilizer_recommendation_model_path = r'C:\RajasthanHAck backend\RajasthanITHackathon_NeuralNinjas\random_forest_model.pkl'
 fertilizer_recommendation_model = pickle.load(
     open(fertilizer_recommendation_model_path, 'rb'))
 
@@ -41,18 +43,18 @@ def members1():
         return jsonify({"crop": 'Enter Valid Details', "data": request.json})
 
     x = requests.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + district + ' ' + state +
-                     '.json?access_token=pk.eyJ1Ijoic2FpZ29ydGk4MSIsImEiOiJja3ZqY2M5cmYydXd2MnZwZ2VoZzl1ejNkIn0.CupGYvpb_LNtDgp7b-rZJg')
+                     '.json?access_token=pk.eyJ1IjoiYXJ5YW5tZWh0YTc2NSIsImEiOiJjbGZna3MxdG40Zjh2M3hyMDh4dW5xYms1In0.9oZ36G4cOJOv5giSUdIBig')
 
     coordinates = x.json()['features'][0]['center']
 
     y = requests.get('https://api.openweathermap.org/data/2.5/weather?lat=' + str(
-        coordinates[1]) + '&lon=' + str(coordinates[0]) + '&appid=288a2f93f39e83cd21b86dba6b329fd8')
+        coordinates[1]) + '&lon=' + str(coordinates[0]) + '&appid=268cc51afbd06d6ffb21c827c6289880')
 
     humidity = y.json()['main']['humidity']
     temprature = y.json()['main']['temp'] - 273.15
 
-    df = pd.read_csv("./rainfall.csv")
-    q = df.loc[(df['STATE_UT_NAME'] == state) & (df['DISTRICT'] == district)]
+    # df = pd.read_csv("./rainfall.csv")
+    # q = df.loc[(df['STATE_UT_NAME'] == state) & (df['DISTRICT'] == district)]
 
     total = 0
     l = 12
@@ -166,45 +168,53 @@ def members2():
 
 @app.route("/rice", methods=['POST'])
 def members3():
+    print(request)
     img = request.files['image']
     if img:
         img_loc = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(img.filename))
         img.save(img_loc)
-        test_image = keras.preprocessing.image.load_img(img_loc, target_size=(299, 299))
-        model = keras.models.load_model(r'C:\Users\ARYAN\Desktop\rajasthanIT\Models\rice.h5')
-        result = model.predict(test_image)
+        x = tf.io.read_file(img_loc)
+        x = tf.io.decode_image(x,channels=3) 
+        x = tf.image.resize(x,[299,299])
+        # test_image = cv2.imread(img_loc)
+        # test_image = cv2.cvtColor(test_image, cv2.COLOR_BGR2RGB)
+        # test_image=cv2.resize(test_image, (299, 299))
+        # test_image = test_image.reshape(np.nan,240,240,3)
+        model = keras.models.load_model(r'C:\RajasthanHAck backend\RajasthanITHackathon_NeuralNinjas\rice.h5')
+        result = model.predict(x)
     return jsonify({"ricedisease": result})
 
 @app.route("/wheat", methods=['POST'])
-def members3():
+def members4():
+    print(request)
     img = request.files['image']
     if img:
         img_loc = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(img.filename))
         img.save(img_loc)
-        test_image = keras.preprocessing.image.load_img(img_loc, target_size=(299, 299))
-        model = keras.models.load_model(r'C:\Users\ARYAN\Desktop\rajasthanIT\Models\wheatdisease.h5')
+        test_image = './static/submitted/'+secure_filename(img.filename)
+        model = keras.models.load_model(r'C:\RajasthanHAck backend\RajasthanITHackathon_NeuralNinjas\wheatdisease.h5')
         result = model.predict(test_image)
     return jsonify({"wheatdisease": result})
 
 @app.route("/maize", methods=['POST'])
-def members3():
+def members5():
     img = request.files['image']
     if img:
         img_loc = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(img.filename))
         img.save(img_loc)
         test_image = keras.preprocessing.image.load_img(img_loc, target_size=(299, 299))
-        model = keras.models.load_model(r'C:\Users\ARYAN\Desktop\rajasthanIT\Models\wheatdisease.h5')
+        model = keras.models.load_model(r'C:\RajasthanHAck backend\RajasthanITHackathon_NeuralNinjas\wheatdisease.h5')
         result = model.predict(test_image)
     return jsonify({"maizedisease": result})
 
 @app.route("/potato", methods=['POST'])
-def members3():
+def members6():
     img = request.files['image']
     if img:
         img_loc = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(img.filename))
         img.save(img_loc)
         test_image = keras.preprocessing.image.load_img(img_loc, target_size=(299, 299))
-        model = keras.models.load_model(r'C:\Users\ARYAN\Desktop\rajasthanIT\Models\potato.h5')
+        model = keras.models.load_model(r'C:\RajasthanHAck backend\RajasthanITHackathon_NeuralNinjas\potato.h5')
         result = model.predict(test_image)
     return jsonify({"potatodisease": result})
 
