@@ -37,11 +37,12 @@ const CropPredict = () => {
       }),
     };
 
-    fetch("http://localhost:5000/fertilizer", requestOptions)
+    fetch("http://127.0.0.1:5000/fertilizer", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
         setData(data.crop);
+        console.log(data.crop);
         setLoading(0);
       })
       .catch((error) => {

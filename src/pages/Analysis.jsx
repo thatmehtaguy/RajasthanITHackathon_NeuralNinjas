@@ -5,6 +5,7 @@ import CropPredict from '../analysiscomponents/CropPredict'
 import FertPredict from '../analysiscomponents/FertPredict'
 import Map from '../analysiscomponents/Map'
 import ContactUs from '../analysiscomponents/ContactUs'
+import DiseaseDetection from '../analysiscomponents/DiseaseDetection'
 
 
 function Analysis() {
@@ -15,6 +16,7 @@ function Analysis() {
         <CropPredict />
         <FertPredict />
         <Map/>
+        <DiseaseDetection/>
         <ContactUs />
     </div>
   )

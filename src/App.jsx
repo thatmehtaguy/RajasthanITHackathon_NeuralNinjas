@@ -5,20 +5,27 @@ import Home from "./pages/Home";
 import MarketPlace from "./pages/MarketplacesPages/MarketplaceEntry";
 import Analysis from "./pages/Analysis";
 import Loans from "./pages/Loans";
+<<<<<<< Updated upstream:src/App.js
 import MainCategories from "./pages/MarketplacesPages/MainCategories"
 import SubCategories from "./pages/MarketplacesPages/SubCategories"
 import ProductCollection from "./pages/MarketplacesPages/ProductCollection";
 import Productpg from "./pages/MarketplacesPages/Productpg";
 import Checkout from "./pages/MarketplacesPages/Checkout";
 
+=======
+import Signup from "./pages/DashPages/Login";
+import Categories from "./pages/MarketplacesPages/Categories";
+>>>>>>> Stashed changes:src/App.jsx
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+
+
   return (
     <div className="App">
       <Router>
-        <Header />
+        <Header/>
         <Routes>
         <Route
           path="/"
@@ -85,6 +92,14 @@ function App() {
         
         
         <Route
+          path="/marketplace/categories"
+          element={
+            <>
+              <Categories/>
+            </>
+          }
+        />
+        <Route
           path="/loans"
           element={
             <>
@@ -112,6 +127,26 @@ function App() {
               </>
             }
           />
+
+          <Route
+          path="/dash/signup"
+          element={
+            <>
+              <Signup />
+            </> 
+          }
+          />
+          <Route
+          path="/dash/login"
+          element={
+            <>
+              <Signup />
+            </> 
+          }
+          />
+
+
+
         </Routes>
         <Footer />
       </Router>

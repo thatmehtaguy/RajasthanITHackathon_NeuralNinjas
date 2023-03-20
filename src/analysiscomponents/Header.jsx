@@ -1,9 +1,9 @@
 import React from "react";
 import "./Header.css";
 import logo from "../assets/images/logo.png";
-import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+
   return (
     <div>
       <header
@@ -20,19 +20,19 @@ const Header = () => {
                 </a>
                 <ul className="nav">
                   <li className="scroll-to-section">
-                    <a href="#top" className="active">
+                    <a href="/" >
                       Home
                     </a>
                   </li>
                   <li className="scroll-to-section">
-                    <a href="#marketplace">
+                    <a href="/marketplace" >
                       Marketplace</a>
                   </li>
                   <li className="scroll-to-section">
-                    <a href="#loans">Loans</a>
+                    <a href="/loans" >Loans</a>
                   </li>
                   <li className="scroll-to-section">
-                    <a href="#analysis">Analysis</a>
+                    <a href="/analytics " >Analysis</a>
                   </li>
                   <li>
                     <div id="google_translate_element"></div>
