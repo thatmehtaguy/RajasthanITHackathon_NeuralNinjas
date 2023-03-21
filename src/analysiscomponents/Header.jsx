@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.css";
-import logo from "../assets/images/logo.png";
+import Logo from "./logo1.png";
 
 const Header = () => {
 
@@ -16,7 +16,7 @@ const Header = () => {
             <div className="col-12">
               <nav className="main-nav">
                 <a href="#top" className="logo">
-                  <img src={logo} />
+                  <img src={Logo} width={300} height={200} mt-12 />
                 </a>
                 <ul className="nav">
                   <li className="scroll-to-section">
