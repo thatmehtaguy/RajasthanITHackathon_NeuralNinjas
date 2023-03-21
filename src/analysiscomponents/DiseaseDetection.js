@@ -5,6 +5,10 @@ import "./CropPredict.css";
 const DiseasePredict = () => {
   const [crop, setCrop] = useState("maize");
   const [imageFiles, setImageFile] = useState([]);
+
+  <div className="card-actions justify-end">
+    <button className="btn btn-primary">Buy Now</button>
+  </div>
     
 
     // const changeColour = (e) => {

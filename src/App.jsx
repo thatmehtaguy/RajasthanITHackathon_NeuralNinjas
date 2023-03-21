@@ -102,15 +102,6 @@ function App() {
             </>
           }
         /> */}
-        <Route
-          path="/loans"
-          element={
-            <>
-            <Header/>
-              <Loans/>
-            </>
-          }
-        />
         
           <Route
             path="/analytics"
